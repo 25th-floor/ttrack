@@ -1,12 +1,10 @@
-'use strict';
-
 import moment from 'moment';
 import myro from 'myro';
 
 import * as timeUtils from '../../common/timeUtils';
 
-let router = myro({
-    '/month/:month': 'month'
+const router = myro({
+    '/month/:month': 'month',
 });
 
 function dispatchRouter() {
@@ -14,7 +12,7 @@ function dispatchRouter() {
 }
 
 function activeMonthFromRoute(route) {
-    if (route && route.$name == 'month' && route.$params.month) {
+    if (route && route.$name === 'month' && route.$params.month) {
         // todo : check if month is valid!
         return moment(route.$params.month, 'YYYY-MM', true);
     } else {
@@ -22,13 +20,12 @@ function activeMonthFromRoute(route) {
     }
 }
 
-export default function(onChange) {
-
-    let notify = () => onChange ? onChange() : null;
+export default onChange => {
+    const notify = () => onChange ? onChange() : null;
     let activeMonth = timeUtils.getMomentToday();
 
-    let dispatch = () => {
-        let route = dispatchRouter();
+    const dispatch = () => {
+        const route = dispatchRouter();
         activeMonth = activeMonthFromRoute(route);
     };
 
@@ -45,10 +42,10 @@ export default function(onChange) {
             return activeMonth;
         },
         gotoMonth(month) {
-            let path = router.month({month: month.format('YYYY-MM')});
+            const path = router.month({ month: month.format('YYYY-MM') });
             activeMonth = month;
             window.history.pushState(null, '', path);
             notify();
-        }
+        },
     };
 };
