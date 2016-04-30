@@ -1,0 +1,6 @@
+# Ignore non src files
+*.js
+!src/**/*
+
+# Ignore test files
+**/__*/**
