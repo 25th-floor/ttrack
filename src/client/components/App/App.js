@@ -1,32 +1,28 @@
-'use strict';
+import React, { PropTypes } from 'react';
 
-import React from 'react';
-
-import Motto from '../Motto';
 import Navigation from '../Navigation';
 import AppFooter from './Footer';
 
 import styles from './less/App.less';
 
-export default React.createClass({
-    propTypes: {
-        motto: React.PropTypes.object.isRequired,
-        logout: React.PropTypes.func.isRequired,
-        user: React.PropTypes.object.isRequired,
-        build: React.PropTypes.object
-    },
-    render: function() {
-        return (
-            <div className={styles['site-container']}>
-                <div className="container-fluid">
-                    <Navigation motto={this.props.motto} onLogout={this.props.logout} activeUser={this.props.user}/>
-                    <div>{this.props.children}</div>
-                </div>
+const { object, func } = PropTypes;
 
-                <AppFooter motto={this.props.motto} build={this.props.build}/>
+const App = ({ motto, logout, user, build, children }) => (
+    <div className={styles['site-container']}>
+        <div className="container-fluid">
+            <Navigation motto={motto} onLogout={logout} activeUser={user} />
+            <div>{ children }</div>
+        </div>
+        <AppFooter motto={motto} build={build} />
+    </div>
+);
 
-            </div>
-        );
-    }
-});
+App.propTypes = {
+    motto: object.isRequired,
+    logout: func.isRequired,
+    user: object.isRequired,
+    build: object,
+    children: object,
+};
 
+export default App;
