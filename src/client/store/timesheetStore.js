@@ -124,10 +124,10 @@ export default onChange => {
                     userId,
                     per_pty_id: period.get('type').get('pty_id'),
                 });
-                mergedPeriod = fixDurations(period);
+                mergedPeriod = fixDurations(mergedPeriod);
 
                 /* console.log('timesheet store prepared obj', period); */
-                if (period.get('per_id')) {
+                if (mergedPeriod.get('per_id')) {
                     promises.push(periodSingleResource.save(mergedPeriod));
                 } else {
                     promises.push(periodCollectionResource.save(mergedPeriod));
