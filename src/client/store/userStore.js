@@ -1,5 +1,3 @@
-'use strict';
-
 import localStorage from '../localStorage';
 import resource from '../resource';
 

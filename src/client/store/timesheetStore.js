@@ -33,24 +33,26 @@ function assocPeriodWithType(typeMap, targetTime, period) {
 }
 
 function assocPeriodsWithTypes(types, days) {
-    const typeMap = types.groupBy(type => type.get('pty_id')).map(types => types.first());
+    const typeMap = types.groupBy(type => type.get('pty_id')).map(groupedTypes => groupedTypes.first());
     return days.map(day =>
         day.updateIn(['periods'], periods =>
             periods.map(assocPeriodWithType.bind(null, typeMap, day.get('day_target_time')))));
 }
 
 function fixDurations(period) {
+    let per = period;
     // remove empty per_duration obj
     if (period.get('per_duration') && period.get('per_duration').size === 0) {
-        period = period.delete('per_duration');
+        per = period.delete('per_duration');
     }
 
     const durations = ['per_start', 'per_stop', 'per_duration', 'per_break'];
-    return period.map((val, key) => _.includes(durations, key) && val !== null ? moment.duration(val.toJS()) : val);
+    return per.map((val, key) => _.includes(durations, key) && val !== null ? moment.duration(val.toJS()) : val);
 }
 
 export default onChange => {
     const periodTypes = resource.collection('/api/period-types');
+    /* eslint-disable new-cap */
     let timesheet = Immutable.Map();
     const notify = () => onChange ? onChange() : null;
     let initialized = false;
@@ -116,19 +118,19 @@ export default onChange => {
             removed.forEach(id => promises.push(periodSingleResource.remove({ per_id: id, userId })));
 
             // update/create
-            periods.forEach((period) => {
-                period = period.merge({
+            periods.forEach(period => {
+                let mergedPeriod = period.merge({
                     date: date.format('YYYY-MM-DD'),
                     userId,
-                    per_pty_id: period.get('type').get('pty_id')
+                    per_pty_id: period.get('type').get('pty_id'),
                 });
-                period = fixDurations(period);
+                mergedPeriod = fixDurations(period);
 
                 /* console.log('timesheet store prepared obj', period); */
                 if (period.get('per_id')) {
-                    promises.push(periodSingleResource.save(period));
+                    promises.push(periodSingleResource.save(mergedPeriod));
                 } else {
-                    promises.push(periodCollectionResource.save(period));
+                    promises.push(periodCollectionResource.save(mergedPeriod));
                 }
             });
 
