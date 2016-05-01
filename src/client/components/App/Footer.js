@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+
 import Motto from '../Motto';
+
 import styles from './less/Footer.less';
 
 const { object } = PropTypes;
