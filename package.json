@@ -41,7 +41,6 @@
     "collectCoverage": true,
     "setupTestFrameworkScriptFile": "./setup-jasmine-env.js",
     "scriptPreprocessor": "./node_modules/babel-jest",
-    "testRunner": "./node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
@@ -92,7 +91,7 @@
     "jasmine-expect-moment": "~0.1",
     "jasmine-expect-react": "~0.1",
     "jasmine-reporters": "~2.1",
-    "jest-cli": "25th-floor/jest#0.8.2",
+    "jest-cli": "~12.0",
     "jsx-loader": "^0.13.2",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
