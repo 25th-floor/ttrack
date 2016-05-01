@@ -17,7 +17,7 @@
   "author": "25th floor",
   "license": "ISC",
   "engines": {
-    "node": ">=v4.0.0"
+    "node": ">=v5.0.0"
   },
   "babel": {
     "presets": [

@@ -1,5 +1,7 @@
 # TTrack
 
+[![Build Status](https://travis-ci.org/bountin/ttrack.svg?branch=master)](https://travis-ci.org/bountin/ttrack)
+
 A Time Tracking application. Needs a Postgres Database.
 
 ## Getting Stated

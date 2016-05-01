@@ -1,4 +1,4 @@
-# Ignore non src files
+# IntelliJ Override
 *.js
 !src/**/*
 
