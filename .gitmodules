@@ -1,0 +1,8 @@
+[submodule "ttrack-client"]
+	path = ttrack-client
+	url = git@github.com:25th-floor/ttrack-client.git
+	branch = master
+[submodule "ttrack-server"]
+	path = ttrack-server
+	url = git@github.com:25th-floor/ttrack-server.git
+	branch = master

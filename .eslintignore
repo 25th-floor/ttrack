@@ -1,6 +1,0 @@
-# IntelliJ Override
-*.js
-!src/**/*
-
-# Ignore test files
-**/__*/**

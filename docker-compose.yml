@@ -10,19 +10,29 @@ services:
     ports:
       - 5432:5432
 
-  ttrack:
+  ttrack-server:
     build:
-      context: .
+      context: ./node_modules/ttrack-server/
       dockerfile: Dockerfile
-    container_name: ttrack-app
+    container_name: ttrack-server
     environment:
       - DB_USER=postgres
       - DB_PASS=postgres
       - DB_DATABASE=ttrack
       - DB_HOST=db
-      - NODE_ENV=development
     ports:
       - 8080:8080
-    volumes:
-      - ./src:/app/src
-      - ./public/images/users:/app/public/images/users
+    depends_on:
+      - db
+
+  ttrack-client:
+    build:
+      context: ./node_modules/ttrack-client/
+      dockerfile: Dockerfile
+    container_name: ttrack-client
+    environment:
+      - API_URL=http://ttrack-server:8080
+    ports:
+      - 8081:80
+    depends_on:
+      - ttrack-server

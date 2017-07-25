@@ -1,11 +1,4 @@
 .idea
 /node_modules
-config.json
-database.json
-data/*.csv
-/public/fonts
-/coverage
 buildinfo.json
-/public/app.css
-/public/app.js
 /npm-debug.log
