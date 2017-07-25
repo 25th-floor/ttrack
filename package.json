@@ -3,14 +3,8 @@
   "version": "0.4.0",
   "description": "Another TimeTracking Tool",
   "scripts": {
-    "start": "node --use-strict ./src/server/index.js",
-    "build": "webpack --config webpack.production.config.js",
-    "dev": "webpack-dev-server",
-    "lint": "eslint ./src",
-    "fix-lint": "eslint --fix ./src",
-    "flow": "flow check",
-    "test": "jest --no-cache src/common/**/*",
-    "test-server": "jest --no-cache src/server/**/*"
+    "install": "git submodule foreach 'yarn install'",
+    "build": "git submodule foreach 'yarn run build'"
   },
   "author": "25th floor",
   "license": "ISC",
