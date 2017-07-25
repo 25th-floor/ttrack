@@ -7,9 +7,5 @@
     "build": "git submodule foreach 'yarn run build'"
   },
   "author": "25th floor",
-  "license": "ISC",
-  "engines": {
-    "yarn": ">= 0.18.0"
-  },
-  "dependencies": {}
+  "license": "MIT"
 }
